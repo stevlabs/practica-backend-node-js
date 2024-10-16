@@ -3,7 +3,8 @@ const app = express();
 const port = process.env.PORT || 3000; 
 
 // Importar los routers
-const indexRouter = require(__dirname + "/routers/indexRouter.js");
+const indexRouter = require("./routers/indexRouter");
+const serviciosRouter = require("./routers/serviciosRouter");
 
 // Establecer EJS como motor de plantillas
 app.set("view engine", "ejs");
@@ -15,6 +16,7 @@ app.use(express.static(__dirname + "/public"));
 
 // Usar los routers
 app.use("/", indexRouter);
+app.use("/servicios", serviciosRouter);
 
 // Iniciar servidor
 app.listen(port, () => {

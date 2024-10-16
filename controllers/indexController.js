@@ -2,7 +2,7 @@
 const getIndexPage = (req, res) => {
     res.render("index", 
         {
-            titulo: "Este es el titulo del index",
+            titulo: "Principal",
             mensaje: "Hola mundo desde index"
         }
     );

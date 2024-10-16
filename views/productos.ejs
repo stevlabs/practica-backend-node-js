@@ -1,0 +1,15 @@
+<%- include("templates/header") %>
+
+<main>
+    <h2>Pagina <%= titulo %></h2>
+    <p><%= mensaje %></p>
+    <ul>
+        <% productos.forEach(producto => { %>
+            <li>
+                <strong><%= producto.nombre %></strong>: <%= producto.descripcion %>
+            </li>   
+        <% }) %>
+    </ul>
+</main>
+
+<%- include("templates/footer") %>

@@ -1,5 +1,8 @@
 // Importar express
 const express = require("express");
+const { check, param } = require("express-validator");
+// Importar middleware
+const validateInputs = require("../middlewares/validarCampos"); 
 
 // Llamar a la clase router de express
 const router = express.Router();
@@ -16,16 +19,47 @@ const { getServicios,
 router.get("/servicios", getServicios);
 
 // Obtener un servicio por ID
-router.get("/servicio/:id", getServicioById);
+router.get(
+    "/servicio/:id", 
+    [
+        param("id", "ID no valido no es un MongoID").isMongoId(),
+        validateInputs, 
+    ], 
+    getServicioById
+);
 
 // Crear un nuevo servicio
-router.post("/servicio", createServicio);
+router.post(
+    "/servicio",
+    [
+        check("nombre", "El nombre es obligatorio").trim().notEmpty(),
+        check("descripcion", "La descripcion es obligatorio").trim().notEmpty(),
+        validateInputs
+    ], 
+    createServicio
+);
 
 // Actualizar un servicio existente por ID
-router.put("/servicio/:id", updateServicio);
+router.put(
+    "/servicio/:id",
+    [
+        param("id", "ID no valido no es un MongoID").isMongoId(),
+        check("nombre", "El nombre es obligatorio").trim().notEmpty(),
+        check("descripcion", "La descripcion es obligatorio").trim().notEmpty(),
+        validateInputs
+    ], 
+    updateServicio
+);
 
 // Eliminar un servicio por ID
-router.delete("/servicio/:id", deleteServicio);
+router.delete(
+    "/servicio/:id",
+    [
+        param("id", "ID no valido no es un MongoID").isMongoId(),
+        validateInputs, 
+    ], 
+    deleteServicio
+);
 
 // Exportar el router
 module.exports = router;

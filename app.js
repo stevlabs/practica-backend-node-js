@@ -10,11 +10,12 @@ dotenv.config();
 dbConnection();
 
 const app = express();
+
 // Definir puerto
 const port = process.env.PORT || 3000; 
 
 // Importar los routers
-// const indexRouter = require(__dirname + "/routers/indexRouter");
+const indexRouter = require("./routers/indexRouter");
 const serviciosRouter = require("./routers/serviciosRouter");
 const productosRouter = require("./routers/productosRouter");
 
@@ -23,18 +24,11 @@ app.use(express.json());
  // Para datos de formularios
 app.use(express.urlencoded({ extended: true }));
 
-// Establecer EJS como motor de plantillas
-// app.set("view engine", "ejs");
-// Establecer cual va a ser la carpeta de vistas
-// app.set("views", __dirname + "/views");
+// Usar el router de índice
+app.use("/", indexRouter);
 
-// Middleware para la carpeta public
-//app.use(express.static(__dirname + "/public"));
-
-// Usar los routers
-//app.use("/api/v1", indexRouter);
+// Usar los routers de servicios y productos
 app.use("/api/v1", serviciosRouter, productosRouter);
-//app.use("/api/v1");
 
 // Iniciar servidor
 app.listen(port, () => {

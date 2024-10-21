@@ -1,12 +1,7 @@
-// Controlador para indexPage
+// Controlador para la ruta del index
 const getIndexPage = (req, res) => {
-    res.render("index", 
-        {
-            titulo: "Principal",
-            mensaje: "Hola mundo desde index"
-        }
-    );
+    res.send("<h1>Bienvenido a la API</h1>");
 };
 
-// Exportar la funcion
-module.exports = { getIndexPage }
+// Exportar la función
+module.exports = { getIndexPage };

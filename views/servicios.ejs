@@ -3,13 +3,15 @@
 <main>
     <h2>Pagina <%= titulo %></h2>
     <p><%= mensaje %></p>
-    <ul>
-        <% servicios.forEach(servicio => { %>
-            <li>
-                <strong><%= servicio.nombre %></strong>: <%= servicio.descripcion %>
-            </li>   
-        <% }) %>
-    </ul>
+    <section>
+        <ul>
+            <% servicios.forEach(servicio => { %>
+                <li>
+                    <strong><%= servicio.nombre %></strong>: <%= servicio.descripcion %>
+                </li>   
+            <% }) %>
+        </ul>
+    </section>  
 </main>
 
 <%- include("templates/footer") %>
